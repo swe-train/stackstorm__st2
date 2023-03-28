@@ -109,6 +109,8 @@ default_resolve = "st2"
 interpreter_constraints = [
   # python_distributions needs a single constraint (vs one line per python version).
   # officially, we exclude 3.7 support, but that adds unnecessary complexity: "CPython>=3.6,!=3.7.*,<3.9",
+  # Make sure to also update supported_interpreter_constraints in pants-plugins/macros.py
+  # (which is for use in parametrize() and similar ic-specific use-cases).
   "CPython>=3.6,<3.9",
   # NB: constraints for tools defined below
 ]
