@@ -35,6 +35,7 @@ target(
     dependencies=[
         "//:reqs#st2-auth-backend-flat-file",
         "//:reqs#st2-auth-ldap",
+        "//:reqs#st2-auth-pam",
     ],
 )
 
