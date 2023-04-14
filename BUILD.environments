@@ -1,0 +1,54 @@
+# This BUILD file defines pants "environments" which allow pants to run some processes
+# in Docker (or possibly via Remote Execution) instead of on the local host.
+# See:
+#   https://blog.pantsbuild.org/environments-simpler-multi-platform-workflows/
+#   https://www.pantsbuild.org/docs/environments
+#   https://www.pantsbuild.org/docs/reference-remote_environment
+#   https://www.pantsbuild.org/docs/reference-local_environment
+#   https://www.pantsbuild.org/docs/reference-docker_environment
+# NOTE: environments are experimental: https://github.com/pantsbuild/pants/issues/17355
+
+# This is basically the default environment
+# local_environment(
+#    name="__local__",
+#    compatible_platforms=["linux_amd64", "linux_x86_64", "macos_arm64", "macos_x86_64"],
+#    fallback_environment=None,  # None = do not automatically fallback to other env
+#    python_bootstrap_names=...,  # defaults to [python-bootstrap].names
+#    python_bootstrap_search_path=...,  # defaults to [python-bootstrap].search_paths
+# )
+
+docker_environment(
+    name="local_container_el7",
+    description="This runs a CentOS 7 container via the localhost's container runtime.",
+    platform="linux_x86_64",
+    image="centos:7",  # stackstorm/packagingbuild:centos7 FROM centos:7
+    # python_bootstrap_names=[],
+    # python_bootstrap_search_path=[],
+)
+
+docker_environment(
+    name="local_container_el8",
+    description="This runs a RockyLinux 8 container via the localhost's container runtime.",
+    platform="linux_x86_64",
+    image="rockylinux:8",  # stackstorm/packagingbuild:rockylinux8 FROM rockylinux:8
+    # python_bootstrap_names=[],
+    # python_bootstrap_search_path=[],
+)
+
+docker_environment(
+    name="local_container_ubuntu18",
+    description="This runs an Ubuntu 18.04 (Bionic) container via the localhost's container runtime.",
+    platform="linux_x86_64",
+    image="ubuntu:bionic",  # stackstorm/packagingbuild:bionic FROM buildpack-deps:bionic FROM ... ubuntu:bionic
+    # python_bootstrap_names=[],
+    # python_bootstrap_search_path=[],
+)
+
+docker_environment(
+    name="local_container_ubuntu20",
+    description="This runs an Ubuntu 20.04 (Focal) container via the localhost's container runtime.",
+    platform="linux_x86_64",
+    image="ubuntu:focal",  # stackstorm/packagingbuild:focal FROM buildpack-deps:focal FROM ... ubuntu:focal
+    # python_bootstrap_names=[],
+    # python_bootstrap_search_path=[],
+)

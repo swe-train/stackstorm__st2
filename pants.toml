@@ -5,7 +5,19 @@ enabled = false
 # To opt-in, use ~/.pants.rc or envrc to set [anonymous-telemetry].enabled=true
 repo_id = "de0dea7a-9f6a-4c6e-aa20-6ba5ad969b8a"
 
+[environments-preview.names]
+# Values are addresses of targets in BUILD.environments
+# linux = "//:local_linux"
+el7_container = "//:local_container_el7"
+el8_container = "//:local_container_el8"
+ubuntu18_container = "//:local_container_ubuntu18"
+ubuntu20_container = "//:local_container_ubuntu20"
+
 [GLOBAL]
+# docker_execution controls whether pants can try using docker_environment targets
+# to run things via a container runtime.
+docker_execution = true  # can override with env: PANTS_DOCKER_EXECUTION=False
+
 pants_version = "2.16.0rc0"
 pythonpath = ["%(buildroot)s/pants-plugins"]
 build_file_prelude_globs = ["pants-plugins/macros.py"]
